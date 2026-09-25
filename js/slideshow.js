@@ -15,8 +15,8 @@ const slideFiles = [
   "video-20260924-144520.mp4",
 ];
 
-// How long each image stays on screen (videos advance when they finish).
-const IMAGE_DURATION_MS = 8000;
+// How long each image/PNG stays on screen (videos play to the end, then advance).
+const IMAGE_DURATION_MS = 30000;
 
 const IMAGE_EXT = /\.(png|jpe?g|webp|gif)$/i;
 const VIDEO_EXT = /\.(mp4|webm|mov)$/i;
@@ -57,10 +57,15 @@ function scheduleAdvance() {
   if (!media) return;
 
   if (media.tagName === "VIDEO") {
+    media.loop = false;
     media.currentTime = 0;
     media.play().catch(() => {
-      // If autoplay is blocked, still move on after the image duration.
-      imageTimer = setTimeout(() => showSlide(index + 1), IMAGE_DURATION_MS);
+      // If autoplay is blocked, wait for the video's own length when known.
+      const ms =
+        Number.isFinite(media.duration) && media.duration > 0
+          ? media.duration * 1000
+          : IMAGE_DURATION_MS;
+      imageTimer = setTimeout(() => showSlide(index + 1), ms);
     });
     return;
   }
