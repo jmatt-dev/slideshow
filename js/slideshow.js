@@ -3,7 +3,16 @@
 // Example:
 //   const slideFiles = ["intro.png", "demo.mp4", "outro.jpg"];
 const slideFiles = [
-  // Drop image/video files into slides/ and list them above.
+  "AppleMusic.png",
+  "CompareEnclaveTrims.png",
+  "CompareEncoreGXTrims.png",
+  "CompareEnvisionTrims.png",
+  "CompareEnvistaTrims.png",
+  "OnStar.png",
+  "PremiumExperience.png",
+  "RedefiningTheIn-CarExperience.png",
+  "SuperCruise.mp4",
+  "video-20260924-144520.mp4",
 ];
 
 // How long each image stays on screen (videos advance when they finish).
